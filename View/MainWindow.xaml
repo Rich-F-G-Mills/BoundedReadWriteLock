@@ -1,0 +1,65 @@
+﻿<Window x:Class="View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:View"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="300" Width="500" ResizeMode="NoResize">
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="150"/>
+            </Grid.RowDefinitions>
+            <GroupBox Header="Status">
+                <StackPanel>
+                    <Label Content="{Binding ReadWriteState}"/>
+                    <Label Content="{Binding ReadWriteEvent}"/>
+                    <Grid Height="25">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>                        
+                    </Grid>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="Actions" Grid.Row="1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="5"/>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="5"/>
+                        <RowDefinition/>
+                        <RowDefinition Height="5"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="25"/>
+                        <ColumnDefinition Width="5"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Button Command="{Binding RequestPauseOrResume}" Grid.ColumnSpan="3">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsPaused}" Value="True">
+                                        <Setter Property="Content" Value="Resume"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding IsRunning}" Value="True">
+                                        <Setter Property="Content" Value="Pause"/>
+                                    </DataTrigger>
+                                </Style.Triggers>                                
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button Command="{Binding RequestRead}" Content="Request Read" Grid.ColumnSpan="3" Grid.Row="2"/>
+                    <Button Command="{Binding RequestWrite}" Grid.Row="4" Content="{Binding Delta}" ContentStringFormat="Request Write: {0:+#;-#;0}" Grid.Column="2" Grid.RowSpan="3"/>
+                    <Button Command="{Binding Increment}" Content="+" Grid.Row="4"/>
+                    <Button Command="{Binding Decrement}" Content="-" Grid.Row="6"/>
+                </Grid>
+            </GroupBox>            
+        </Grid>
+    </Grid>
+</Window>

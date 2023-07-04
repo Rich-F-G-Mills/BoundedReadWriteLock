@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+	<UseWPF>true</UseWPF>
+	<RootNamespace>BoundedReadWriteLock</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="ReadWriteDispatcher.fs" />
+    <Compile Include="Program.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Elmish.WPF" Version="3.5.8" />
+    <PackageReference Include="FSharp.Control.Reactive" Version="5.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\View\View.csproj" />
+  </ItemGroup>
+
+</Project>
